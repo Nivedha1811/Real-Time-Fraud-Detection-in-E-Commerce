@@ -14,7 +14,7 @@ Database: Mysql (Login)
 Development & Testing: Jupyter Notebook, VS Code
 
 **Output Screenshots**
-## 🖼️ Login Page
+## 🖼️ Home Page
 ![Home Page Screenshot](static/images/home.png)
 
 ## 📊 Dashboard View
