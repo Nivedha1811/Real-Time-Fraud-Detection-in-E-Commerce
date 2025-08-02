@@ -15,9 +15,9 @@ Development & Testing: Jupyter Notebook, VS Code
 
 **Output Screenshots**
 ## 🖼️ Login Page
-![Login Page Screenshot](static/images/home.png)
+![Home Page Screenshot](static/images/home.png)
 
 ## 📊 Dashboard View
-
+![Dashboard Page Screenshot](static/images/dashboard.png)
 
  
