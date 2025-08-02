@@ -1,0 +1,186 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<div class="dash-content">
+  <div class="summary-boxes">
+    <div class="summary-box"><h3 id="fraudCount">0</h3><p class="animate__animated animate__bounce">Total Fraud Clients</p></div>
+    <div class="summary-box"><h3 id="legalCount">0</h3><p class="animate__animated animate__bounce">Total Legal Activities</p></div>
+    <div class="summary-box"><h3 id="totalCount">0</h3><p class="animate__animated animate__bounce">Total Transactions</p></div>
+  </div>
+
+  <div class="cardcontainer">
+    <div class="card"><canvas id="fraudPieChart" class="chart-canvas"></canvas></div>
+    <div class="card"><canvas id="countryBarChart" class="bar-canvas"></canvas></div>
+    <div class="card"><canvas id="browserBarChart" class="bar-canvas"></canvas></div>
+    <div class="card"><canvas id="fraudByHourChart"  class="bar-canvas"></canvas>
+  </div>
+</div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="{{ url_for('static', filename='dashborad.js/script.js') }}"></script>
+
+  <script>
+    const fraudPercent = {{ fraud_percent }};
+    const legalPercent = {{ legal_percent }};
+
+    const countryLabels = {{ country_labels | tojson }};
+    const countryData = {{ country_values | tojson }};
+
+    const browserLabels = {{ browser_labels | tojson }};
+    const browserData = {{ browser_values | tojson }};
+
+    const signupHourLabels = {{ signup_hour_labels | tojson }};
+    const signupHourData = {{ signup_hour_values | tojson }};
+
+    new Chart(document.getElementById('fraudByHourChart'), {
+      type: 'bar',
+      data: {
+        labels: signupHourLabels,
+        datasets: [{
+        label: 'Fraud Cases',
+        data: signupHourData,
+        backgroundColor: '#36A2EB'
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        title: {
+          display: true,
+          text: 'Fraud Transactions by Signup Hour',
+          font: { size: 18 }
+        }
+      },
+      scales: {
+        x: {
+          title: { display: true, text: 'Signup Hour (0-23)' }
+        },
+        y: {
+          beginAtZero: true,
+          title: { display: true, text: 'Fraud Count' }
+        }
+      }
+    }
+  });
+  // Pie Chart
+  new Chart(document.getElementById('fraudPieChart'), {
+  type: 'pie',
+  data: {
+    labels: ['Fraud', 'Legal'],
+    datasets: [{
+      data: [fraudPercent, legalPercent],
+      backgroundColor: ['darkblue', '#3b82f6'],  
+      borderWidth: 2,
+      borderColor: '#fff'
+      
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: true,
+    plugins: {
+      title: {
+        display: true,
+        text: 'Fraud vs Legal Transactions',
+        font: { size: 18 }
+      },
+      legend: {
+        position: 'bottom',
+        labels: {
+          font: { size: 16 },
+          padding: 20
+        }
+      }
+    }
+  }
+});
+
+
+  // Country Bar Chart
+  new Chart(document.getElementById('countryBarChart'), {
+    type: 'bar',
+    data: {
+      labels: countryLabels,
+      datasets: [{
+        label: 'Fraud Cases',
+        data: countryData,
+        backgroundColor: '#3b82f6'
+      }]
+    },
+    options: {
+      plugins: {
+        title: {
+          display: true,
+          text: 'Top 5 Fraud-Prone Countries',
+          font: { size: 18 }
+        }
+      }
+    }
+  });
+
+  // Browser Bar Chart
+  new Chart(document.getElementById('browserBarChart'), {
+    type: 'bar',
+    data: {
+      labels: browserLabels,
+      datasets: [{
+        label: 'Fraud by Browser',
+        data: browserData,
+        backgroundColor: 'darkblue'
+      }]
+    },
+    options: {
+      plugins: {
+        title: {
+          display: true,
+          text: 'Fraud Transactions by Browser',
+          font: { size: 18 }
+        }
+      }
+    }
+  });
+</script>
+<script>
+  function animateCount(id, target, duration = 1200) {
+    const el = document.getElementById(id);
+    if (!el || isNaN(target)) return;
+
+    let start = 0;
+    const increment = Math.ceil(target / (duration / 20));
+
+    const counter = setInterval(() => {
+      start += increment;
+      if (start >= target) {
+        start = target;
+        clearInterval(counter);
+
+        // Bounce animation
+        el.classList.add('bounce');
+        el.addEventListener('animationend', () => {
+          el.classList.remove('bounce');
+        }, { once: true });
+      }
+      el.textContent = start.toLocaleString(); // Format with commas
+    }, 20);
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const fraud = {{ fraud_count | int }};
+    const legal = {{ legal_count | int }};
+    const total = fraud + legal;
+
+    console.log("Fraud:", fraud, "Legal:", legal, "Total:", total);
+
+    animateCount("fraudCount", fraud);
+    animateCount("legalCount", legal);
+    animateCount("totalCount", total);
+  });
+
+
+</script>
+
+{% endblock %}
+

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+<body>
+{% extends 'base.html' %}
+{% block title %}About{% endblock %}
+
+{% block content %}
+<section class="about-section container">
+
+  <!--  Mission -->
+  <div class="section-block" data-animate="fade-in">
+    <h2 class="section-title">Project Mission</h2>
+    <p class="section-desc">
+      Project goal is to detect and visualize fraudulent transactions using Machine Learning and a real-time web dashboard. This project empowers businesses to act quickly and make data-driven decisions with confidence.
+    </p>
+  </div>
+
+  <!--  Tech Stack -->
+  <div class="section-block" data-animate="fade-in">
+    <h2 class="section-title">Tech Stack</h2>
+    <div class="tech-icons">
+      <div class="tech-item"><i class='bx bxl-python' ></i>Python</div>
+      <div class="tech-item"><i class='bx bxl-flask'></i>Flask</div>
+      <div class="tech-item"><i class='bx bxs-file-html'></i>HTML5</div>
+      <div class="tech-item"><i class='bx bxs-file-css' ></i>CSS5</div>
+      <div class="tech-item"><i class='bx bxl-bootstrap' ></i>Bootstrap</div>
+      <div class="tech-item"><i class='bx bxs-chart'></i>Matplotlib</div>
+      <div class="tech-item"><i class='bx bxl-javascript'></i>Javascript</div>
+      <div class="tech-item">Pandas & Sklearn</div>
+    </div>
+  </div>
+
+  <!--  How It Works -->
+  <div class="section-block" data-animate="fade-in">
+    <h2 class="section-title"> How It Works</h2>
+    <ol class="how-it-works">
+      <li><strong>Step 1:</strong> The user uploads transaction data or submits via form.</li>
+      <li><strong>Step 2:</strong> The backend Flask app runs the trained ML model to detect fraud probability.</li>
+      <li><strong>Step 3:</strong> A prediction result is shown with fraud probability.</li>
+      <li><strong>Step 4:</strong> The dashboard displays key metrics like fraud % and country trends with charts.</li>
+      <li><strong>Step 5:</strong> User can explore visual reports generated with Chart.js and Matplotlib.</li>
+    </ol>
+  </div>
+
+</section>
+{% endblock %}
+
+</body>
+</html>

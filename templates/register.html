@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register - Fraud Guard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="reg-container">
+    <div class="left-panel">
+       
+      <h2>Create your account</h2>
+      <form method="POST" action="/register">
+        <input type="text" name="username" placeholder="Name" required>
+        <input type="email" name="email" placeholder="E-mail Address" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <input type="password" name="confirm" placeholder="Confirm Password" required>
+
+        <div class="checkbox-row">
+            <input type="checkbox" id="terms" required>
+            <label for="terms">I agree to the <a href="#">Terms & Conditions</a></label>
+        </div>
+
+        <div class="button-group">
+          <button type="submit" class="btn signup">Sign Up</button>
+          <a href="/login" class="btn signin">Sign In</a>
+        </div>
+      </form>
+    </div>
+    
+    <div class="right-panel">
+      <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Fraud Guard Logo" class="reg-logo">
+      <div class="reg-content">
+        <h3>AI-Powered E-Commerce Fraud Detection System</h3>
+        <h2> Stay safe, stay smart</h2>
+        <a href="/login" class="btn use-now">USE NOW</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
