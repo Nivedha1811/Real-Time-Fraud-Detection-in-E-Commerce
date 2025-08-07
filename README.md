@@ -1,4 +1,4 @@
-**Introduction**
+**Introduction:**
 
 Real-time fraud detection in e-commerce using machine learning helps identify and prevent fraudulent transactions instantly as they occur.
 By analyzing user behavior, transaction patterns, device details, and geolocation, ML models can detect anomalies that deviate from normal activity. 
@@ -6,7 +6,7 @@ Supervised learning algorithms like Random Forest, XGBoost, and Logistic Regress
 Real-time prediction systems are integrated with e-commerce platforms to flag or block suspicious transactions immediately, minimizing financial loss and enhancing security. 
 This proactive approach builds trust among users while improving operational efficiency.
 
-**Tech Stack Used**
+**Tech Stack Used:**
 
 Frontend: HTML, CSS, JavaScript, Bootstrap 
 Backend: Python, Flask
@@ -15,7 +15,8 @@ Visualization: Matplotlib & Seaborn, Chart.Js
 Database: Mysql (Login)
 Development & Testing: Jupyter Notebook, VS Code
 
-**Output Screenshots**
+**Output Screenshots:**
+
 ## 🖼️ Home Page
 ![Home Page Screenshot](static/images/home.png)
 
